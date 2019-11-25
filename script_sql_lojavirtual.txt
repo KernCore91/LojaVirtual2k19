@@ -1,0 +1,75 @@
+CREATE TABLE pessoa
+(
+	pessoa_id serial not null primary key,
+	pessoa_nome varchar(75),
+	pessoa_cpf char(14),
+	pessoa_rg varchar(13),
+	pessoa_data_Nasc date,
+	pessoa_rua varchar(50),
+	pessoa_bairro varchar(50),
+	pessoa_cidade varchar(30),
+	pessoa_uf char(2),
+	pessoa_cep float,
+	pessoa_email varchar(40),
+	pessoa_senha varchar(60),
+	pessoa_tipo varchar(30),
+	pessoa_fone1 varchar(11),
+	pessoa_fone2 varchar(11)
+);
+
+insert into pessoa(pessoa_nome, pessoa_cpf, pessoa_rg, pessoa_data_Nasc, pessoa_rua, pessoa_bairro, pessoa_cidade, pessoa_uf, pessoa_cep, pessoa_email, pessoa_senha, pessoa_tipo, pessoa_fone1, pessoa_fone2)
+values('Admin', '999.999.999-99', '999999999', '1000-01-01', 'Rua 999', 'Bairro 999', 'Goiânia', 'GO', '99999999', 'admin@admin.com.br', 'super99', 'Admin', '99999999999', '99999999999')
+
+CREATE TABLE grupoproduto
+(
+	grupoproduto_id serial not null primary key,
+	grupoproduto_nome varchar(65)
+);
+
+CREATE TABLE produto
+(
+	produto_id serial not null primary key,
+	produto_nome varchar(75),
+	produto_preco float,
+	produto_descricao varchar(512),
+	produto_qtde_Estoque float,
+	produto_und varchar(50),
+	grupoproduto_id integer,
+	constraint rel_grupoproduto_id foreign key (grupoproduto_id) references grupoproduto (grupoproduto_id)
+);
+
+CREATE TABLE formapgto
+(
+	formapgto_id serial not null primary key,
+	formapgto_descricao varchar(75),
+	formapgto_num_Max_Parc integer,
+	formapgto_Padrao_Parc integer,
+	formapgto_intervalo_Dias integer,
+	formapgto_percentual_Acres float
+);
+
+CREATE TABLE pedido
+(
+	pedido_id serial not null primary key,
+	pessoa_id integer,
+	formapgto_id integer,
+	pedido_data_Emissao date,
+	pedido_status varchar(30),
+	pedido_data_Autorizacao date,
+	pedido_total float,
+	pedido_desconto float,
+	constraint rel_pessoa_id foreign key (pessoa_id) references pessoa (pessoa_id),
+	constraint rel_formapgto_id foreign key (formapgto_id) references formapgto (formapgto_id)
+);
+
+CREATE TABLE itenspedido
+(
+	itenspedido_id serial not null primary key,
+	pedido_id integer,
+	produto_id integer,
+	itenspedido_qtde float,
+	itenspedido_valor_Unit float,
+	itenspedido_sub_Total float,
+	constraint rel_pedido_id foreign key (pedido_id) references pedido (pedido_id),
+	constraint rel_produto_id foreign key (produto_id) references produto (produto_id)
+);
