@@ -1,0 +1,123 @@
+<div class="container">
+	<form>
+		<div class="card-header">
+			<div class="row">
+				<div class="col-8">
+					Pessoas
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-primary" (click)="adicionar()">Adicionar</button> |
+					<button type="button" class="btn btn-warning" (click)="alterar()">Alterar</button> |
+					<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-primary" role="alert">
+			{{mens}}
+		</div>
+		<div class="card-body">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputCodigo">Código</label>
+					<input type="number" class="form-control" name="inputCodigo" [(ngModel)]="objeto.pessoa_id">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputNome">Nome</label>
+					<input type="text" class="form-control" name="inputNome" [(ngModel)]="objeto.pessoa_nome">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCPF">CPF</label>
+					<input type="text" class="form-control" name="inputCPF" [(ngModel)]="objeto.pessoa_cpf">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputRG">RG</label>
+					<input type="text" class="form-control" name="inputRG" [(ngModel)]="objeto.pessoa_rg">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputDataNascimento">Data de Nascimento</label>
+					<input type="date" class="form-control" name="inputDataNascimento" [(ngModel)]="objeto.pessoa_data_Nasc">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputRua">Rua</label>
+					<input type="text" class="form-control" name="inputRua" [(ngModel)]="objeto.pessoa_rua">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputBairro">Bairro</label>
+					<input type="text" class="form-control" name="inputBairro" [(ngModel)]="objeto.pessoa_bairro">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCidade">Cidade</label>
+					<input type="text" class="form-control" name="inputCidade" [(ngModel)]="objeto.pessoa_cidade">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputUF">Unidade Federativa</label>
+					<input type="text" class="form-control" name="inputUF" [(ngModel)]="objeto.pessoa_uf">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCEP">CEP</label>
+					<input type="number" class="form-control" name="inputCEP" [(ngModel)]="objeto.pessoa_cep">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputEmail">E-Mail</label>
+					<input type="text" class="form-control" name="inputEmail" [(ngModel)]="objeto.pessoa_email">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputSenha">Senha</label>
+					<input type="text" class="form-control" name="inputSenha" [(ngModel)]="objeto.pessoa_senha">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputTipo">Tipo</label>
+					<input type="text" class="form-control" name="inputTipo" [(ngModel)]="objeto.pessoa_tipo">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputFone1">Telefone 1</label>
+					<input type="text" class="form-control" name="inputFone1" [(ngModel)]="objeto.pessoa_fone1">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputFone2">Telefone 2</label>
+					<input type="text" class="form-control" name="inputFone2" [(ngModel)]="objeto.pessoa_fone2">
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<table class="table">
+					<th scope="col"> Código </th>
+					<th scope="col"> Nome </th>
+					<th scope="col"> CPF </th>
+					<th scope="col"> RG </th>
+					<th scope="col"> Data de Nascimento </th>
+					<th scope="col"> Rua </th>
+					<th scope="col"> Bairro </th>
+					<th scope="col"> Cidade </th>
+					<th scope="col"> Unidade Federativa </th>
+					<th scope="col"> CEP </th>
+					<th scope="col"> E-Mail </th>
+					<th scope="col"> Senha </th>
+					<th scope="col"> Tipo </th>
+					<th scope="col"> Telefone 1 </th>
+					<th scope="col"> Telefone 2 </th>
+					<th scope="col"> Carregamento </th>
+					<tr *ngFor="let f of lista">
+						<td>{{f.pessoa_id}}</td>
+						<td>{{f.pessoa_nome}}</td>
+						<td>{{f.pessoa_cpf}}</td>
+						<td>{{f.pessoa_rg}}</td>
+						<td>{{f.pessoa_data_Nasc}}</td>
+						<td>{{f.pessoa_rua}}</td>
+						<td>{{f.pessoa_bairro}}</td>
+						<td>{{f.pessoa_cidade}}</td>
+						<td>{{f.pessoa_uf}}</td>
+						<td>{{f.pessoa_cep}}</td>
+						<td>{{f.pessoa_email}}</td>
+						<td>{{f.pessoa_senha}}</td>
+						<td>{{f.pessoa_tipo}}</td>
+						<td>{{f.pessoa_fone1}}</td>
+						<td>{{f.pessoa_fone2}}</td>
+						<td><p-button label="Carregar" (onClick)="carregarDados(f)"></p-button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
