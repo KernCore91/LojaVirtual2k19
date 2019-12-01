@@ -50,4 +50,60 @@ public class Produto {
 	
 	public GrupoProduto getGrupoProduto() {return grupoProduto;}
 	public void setGrupoProduto(GrupoProduto grupoProduto) {this.grupoProduto = grupoProduto;}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((grupoProduto == null) ? 0 : grupoProduto.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(preco);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(qtde_Estoque);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((und == null) ? 0 : und.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (grupoProduto == null) {
+			if (other.grupoProduto != null)
+				return false;
+		} else if (!grupoProduto.equals(other.grupoProduto))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Double.doubleToLongBits(preco) != Double.doubleToLongBits(other.preco))
+			return false;
+		if (Double.doubleToLongBits(qtde_Estoque) != Double.doubleToLongBits(other.qtde_Estoque))
+			return false;
+		if (und == null) {
+			if (other.und != null)
+				return false;
+		} else if (!und.equals(other.und))
+			return false;
+		return true;
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,18 +32,21 @@ public class PessoaResource {
 	private PessoaRepository pessoaRepository;
 	
 	@GetMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Pessoa> list()
 	{
 		return pessoaRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Optional<Pessoa> findById(@PathVariable Long id)
 	{
 		return pessoaRepository.findById(id);
 	}
 	
 	@PostMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Pessoa> create(@RequestBody Pessoa pessoa, HttpServletResponse response)
 	{
 		Pessoa save = pessoaRepository.save(pessoa);
@@ -51,6 +55,7 @@ public class PessoaResource {
 	}
 	
 	@DeleteMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id)
 	{
@@ -59,6 +64,7 @@ public class PessoaResource {
 	}
 	
 	@PutMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa)
 	{
 		Optional<Pessoa> pessoaBanco = pessoaRepository.findById(id);

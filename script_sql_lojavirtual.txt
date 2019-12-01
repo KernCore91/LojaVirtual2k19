@@ -1,75 +1,76 @@
-CREATE TABLE pessoa
+ CREATE TABLE pessoa
 (
-	pessoa_id serial not null primary key,
-	pessoa_nome varchar(75),
-	pessoa_cpf char(14),
-	pessoa_rg varchar(13),
-	pessoa_data_Nasc date,
-	pessoa_rua varchar(50),
-	pessoa_bairro varchar(50),
-	pessoa_cidade varchar(30),
-	pessoa_uf char(2),
-	pessoa_cep float,
-	pessoa_email varchar(40),
-	pessoa_senha varchar(60),
-	pessoa_tipo varchar(30),
-	pessoa_fone1 varchar(11),
-	pessoa_fone2 varchar(11)
-);
-
-insert into pessoa(pessoa_nome, pessoa_cpf, pessoa_rg, pessoa_data_Nasc, pessoa_rua, pessoa_bairro, pessoa_cidade, pessoa_uf, pessoa_cep, pessoa_email, pessoa_senha, pessoa_tipo, pessoa_fone1, pessoa_fone2)
-values('Admin', '999.999.999-99', '999999999', '1000-01-01', 'Rua 999', 'Bairro 999', 'Goiânia', 'GO', '99999999', 'admin@admin.com.br', 'super99', 'Admin', '99999999999', '99999999999')
+  pessoa_id SERIAL NOT NULL PRIMARY KEY,
+  pessoa_nome VARCHAR(75),
+  pessoa_cpf VARCHAR(14),
+  pessoa_rg VARCHAR(13),
+  pessoa_data_nasc DATE,
+  pessoa_rua VARCHAR(50),
+  pessoa_bairro VARCHAR(50),
+  pessoa_cidade VARCHAR(30),
+  pessoa_uf VARCHAR(2),
+  pessoa_cep INTEGER,
+  pessoa_email VARCHAR(40),
+  pessoa_senha VARCHAR(60),
+  pessoa_tipo VARCHAR(30),
+  pessoa_fone1 VARCHAR(11),
+  pessoa_fone2 VARCHAR(11)
+); 
 
 CREATE TABLE grupoproduto
 (
-	grupoproduto_id serial not null primary key,
-	grupoproduto_nome varchar(65)
+  grupoproduto_id SERIAL NOT NULL PRIMARY KEY,
+  grupoproduto_nome VARCHAR(65)
 );
 
 CREATE TABLE produto
 (
-	produto_id serial not null primary key,
-	produto_nome varchar(75),
-	produto_preco float,
-	produto_descricao varchar(512),
-	produto_qtde_Estoque float,
-	produto_und varchar(50),
-	grupoproduto_id integer,
-	constraint rel_grupoproduto_id foreign key (grupoproduto_id) references grupoproduto (grupoproduto_id)
+  produto_id SERIAL NOT NULL PRIMARY KEY,
+  produto_nome VARCHAR(75),
+  produto_preco FLOAT,
+  produto_descricao VARCHAR(512),
+  produto_qtde_estoque FLOAT,
+  produto_und VARCHAR(50),
+  grupoproduto_id INTEGER,
+  CONSTRAINT rel_grupoproduto_produto FOREIGN KEY (grupoproduto_id) REFERENCES grupoproduto (grupoproduto_id)
 );
+
 
 CREATE TABLE formapgto
 (
-	formapgto_id serial not null primary key,
-	formapgto_descricao varchar(75),
-	formapgto_num_Max_Parc integer,
-	formapgto_Padrao_Parc integer,
-	formapgto_intervalo_Dias integer,
-	formapgto_percentual_Acres float
+  formapgto_id SERIAL NOT NULL PRIMARY KEY,
+  formapgto_descricao VARCHAR(75),
+  formapgto_num_max_parc INTEGER,
+  formapgto_padrao_parc INTEGER,
+  formapgto_intervalo_dias INTEGER,
+  formapgto_percentual_acres FLOAT
 );
 
 CREATE TABLE pedido
 (
-	pedido_id serial not null primary key,
-	pessoa_id integer,
-	formapgto_id integer,
-	pedido_data_Emissao date,
-	pedido_status varchar(30),
-	pedido_data_Autorizacao date,
-	pedido_total float,
-	pedido_desconto float,
-	constraint rel_pessoa_id foreign key (pessoa_id) references pessoa (pessoa_id),
-	constraint rel_formapgto_id foreign key (formapgto_id) references formapgto (formapgto_id)
-);
+  pedido_id SERIAL NOT NULL PRIMARY KEY,
+  pessoa_id INTEGER NOT NULL,
+  formapgto_id INTEGER NOT NULL,
+  pedido_data_emissao TIMESTAMP,
+  pedido_status VARCHAR(20),
+  pedido_data_autorizacao TIMESTAMP,
+  pedido_total FLOAT,
+  pedido_desconto FLOAT,
+  CONSTRAINT rel_cliente_pedido FOREIGN KEY (pessoa_id) REFERENCES pessoa (pessoa_id),
+  CONSTRAINT rel_formapgto_pedido FOREIGN KEY (formapgto_id) REFERENCES formapgto (formapgto_id)
+); 
 
 CREATE TABLE itenspedido
 (
-	itenspedido_id serial not null primary key,
-	pedido_id integer,
-	produto_id integer,
-	itenspedido_qtde float,
-	itenspedido_valor_Unit float,
-	itenspedido_sub_Total float,
-	constraint rel_pedido_id foreign key (pedido_id) references pedido (pedido_id),
-	constraint rel_produto_id foreign key (produto_id) references produto (produto_id)
+  itenspedido_id SERIAL NOT NULL PRIMARY KEY,
+  pedido_id INTEGER NOT NULL,
+  produto_id INTEGER NOT NULL,
+  itenspedido_qtde FLOAT,
+  itenspedido_valor_unit FLOAT,
+  itenspedido_sub_total FLOAT,
+  CONSTRAINT rel_pedido_itenspedido FOREIGN KEY (pedido_id) REFERENCES pedido (pedido_id),
+  CONSTRAINT rel_produto_itenspedido FOREIGN KEY (produto_id) REFERENCES produto (produto_id)
 );
+
+insert into pessoa(pessoa_nome, pessoa_cpf, pessoa_rg, pessoa_data_Nasc, pessoa_rua, pessoa_bairro, pessoa_cidade, pessoa_uf, pessoa_cep, pessoa_email, pessoa_senha, pessoa_tipo, pessoa_fone1, pessoa_fone2)
+values('Admin', '999.999.999-99', '999999999', '1000-01-01', 'Rua 999', 'Bairro 999', 'Goiânia', 'GO', '99999999', 'admin@admin.com.br', 'super99', 'Admin', '99999999999', '99999999999')

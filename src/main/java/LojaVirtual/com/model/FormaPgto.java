@@ -42,4 +42,48 @@ public class FormaPgto {
 	
 	public double getPercentual_Acres() {return percentual_Acres;}
 	public void setPercentual_Acres(double percentual_Acres) {this.percentual_Acres = percentual_Acres;}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + intervalo_Dias;
+		result = prime * result + num_Max_Parc;
+		result = prime * result + num_Padrao_Parc;
+		long temp;
+		temp = Double.doubleToLongBits(percentual_Acres);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FormaPgto other = (FormaPgto) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (intervalo_Dias != other.intervalo_Dias)
+			return false;
+		if (num_Max_Parc != other.num_Max_Parc)
+			return false;
+		if (num_Padrao_Parc != other.num_Padrao_Parc)
+			return false;
+		if (Double.doubleToLongBits(percentual_Acres) != Double.doubleToLongBits(other.percentual_Acres))
+			return false;
+		return true;
+	}
 }

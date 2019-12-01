@@ -18,11 +18,9 @@ public class ItensPedido {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name="pedido_id")
-	//@Column(name = "itenspedido_pedido")
 	private Pedido pedido;
 	@ManyToOne
 	@JoinColumn(name="produto_id")
-	//@Column(name = "itenspedido_produto")
 	private Produto produto;
 	@Column(name = "itenspedido_qtde")
 	private double qtde;
