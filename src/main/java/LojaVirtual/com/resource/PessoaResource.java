@@ -26,6 +26,7 @@ import LojaVirtual.com.model.Pessoa;
 import LojaVirtual.com.repository.PessoaRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/pessoa")
 public class PessoaResource {
 	@Autowired
@@ -55,8 +56,8 @@ public class PessoaResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public void delete(@PathVariable Long id)
 	{
 		pessoaRepository.deleteById(id);

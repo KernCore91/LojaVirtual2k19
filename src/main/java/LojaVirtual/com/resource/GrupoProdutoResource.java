@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,24 +26,28 @@ import LojaVirtual.com.model.GrupoProduto;
 import LojaVirtual.com.repository.GrupoProdutoRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/grupoproduto")
 public class GrupoProdutoResource {
 	@Autowired
 	private GrupoProdutoRepository grupoprodutoRepository;
 	
 	@GetMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public List<GrupoProduto> list()
 	{
 		return grupoprodutoRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Optional<GrupoProduto> findById(@PathVariable Long id)
 	{
 		return grupoprodutoRepository.findById(id);
 	}
 	
 	@PostMapping
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<GrupoProduto> create(@RequestBody GrupoProduto grupoproduto, HttpServletResponse response)
 	{
 		GrupoProduto save = grupoprodutoRepository.save(grupoproduto);
@@ -52,6 +57,7 @@ public class GrupoProdutoResource {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public void delete(@PathVariable Long id)
 	{
 		grupoprodutoRepository.deleteById(id);
@@ -59,6 +65,7 @@ public class GrupoProdutoResource {
 	}
 	
 	@PutMapping("/{id}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<GrupoProduto> update(@PathVariable Long id, @RequestBody GrupoProduto grupoproduto)
 	{
 		Optional<GrupoProduto> grupoprodutoBanco = grupoprodutoRepository.findById(id);
