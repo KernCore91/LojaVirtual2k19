@@ -29,3 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+frontend/LojaVirtual/node_modules/
+frontend/node_modules/

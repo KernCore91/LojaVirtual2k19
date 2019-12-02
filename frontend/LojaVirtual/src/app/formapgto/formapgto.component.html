@@ -1,0 +1,69 @@
+<div class="container">
+	<form>
+		<div class="card-header">
+			<div class="row">
+				<div class="col-8">
+					Produtos
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-primary" (click)="adicionar()">Adicionar</button> |
+					<button type="button" class="btn btn-warning" (click)="alterar()">Alterar</button> |
+					<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-primary" role="alert">
+			{{mens}}
+		</div>
+		<div class="card-body">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputCodigo">Código</label>
+					<input type="number" class="form-control" name="inputCodigo" [(ngModel)]="objeto.formapgto_id">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputDescricao">Descrição</label>
+					<input type="text" class="form-control" name="inputDescricao" [(ngModel)]="objeto.formapgto_descricao">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputMaxParcelas">Numéro Máximo de Parcelas</label>
+					<input type="number" class="form-control" name="inputMaxParcelas" [(ngModel)]="objeto.formapgto_num_Max_Parc">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputParcelaPadrao">Parcelas Padrão</label>
+					<input type="number" class="form-control" name="inputParcelaPadrao" [(ngModel)]="objeto.formapgto_Padrao_Parc">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputIntervaloDias">Intervalos de Dias</label>
+					<input type="number" class="form-control" name="inputIntervaloDias" [(ngModel)]="objeto.formapgto_intervalo_Dias">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputAcrescimoPercentual">Acrescimo Percentual</label>
+					<input type="number" class="form-control" name="inputAcrescimoPercentual" [(ngModel)]="objeto.formapgto_percentual_Acres">
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<table class="table">
+					<th scope="col"> Código </th>
+					<th scope="col"> Descrição </th>
+					<th scope="col"> Numéro Máximo de Parcelas </th>
+					<th scope="col"> Parcelas Padrão </th>
+					<th scope="col"> Intervalos de Dias </th>
+					<th scope="col"> Acrescimo Percentual </th>
+					<th scope="col"> Carregamento </th>
+					<tr *ngFor="let f of lista">
+						<td>{{f.formapgto_id}}</td>
+						<td>{{f.formapgto_descricao}}</td>
+						<td>{{f.formapgto_num_Max_Parc}}</td>
+						<td>{{f.formapgto_Padrao_Parc}}</td>
+						<td>{{f.formapgto_intervalo_Dias}}</td>
+						<td>{{f.formapgto_percentual_Acres}}</td>
+						<td><p-button label="Carregar" (onClick)="carregarDados(f)"></p-button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
